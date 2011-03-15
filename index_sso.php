@@ -1,11 +1,13 @@
 <?php
-/*
+/**
 * Signature-Based Single Sign-On Framework
 * TPA Adapter for
 * FUDForum ( http://www.fudforum.org )
 *
-*  Version            : 0.1
-*  Last update        : 24.10.2010 by Christine Gerpheide
+* Based on the Redmine adapter by Robert Lemke, 2008.
+* 
+* Version            : 0.1
+* Last update        : 24.10.2010 by Christine Gerpheide
 *
 * Changelog
 * 	0.1
