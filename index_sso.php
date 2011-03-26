@@ -90,10 +90,10 @@ function fudforumLogon($userData, $sso_url) {
 		if ($userId) {
 			require_once($GLOBALS['PATH_TO_FUD_FORUM_LOGIN_SCRIPT']); // needed for __ses_make_sysid()
 			$user_id = $userId;
-			$dbh->query("DELETE FROM ".$GLOBALS['FUD_DBHOST_TBL_PREFIX']."ses WHERE user_id=".$user_id);
+			$dbh->query("DELETE FROM `".$GLOBALS['FUD_DBHOST_TBL_PREFIX']."ses` WHERE user_id=".$user_id);
 			$sys_id = __ses_make_sysid(($GLOBALS['FUD_OPT_2'] & 256), ($GLOBALS['FUD_OPT_3'] & 16));
 			$ses_id = md5($user_id . time() . getmypid());
-			$dbh->query("INSERT INTO ".$GLOBALS['FUD_DBHOST_TBL_PREFIX']."ses (ses_id, time_sec, sys_id, user_id) VALUES ('".$ses_id."', ".time().", '".$sys_id."', ".$user_id.")");
+			$dbh->query("INSERT INTO `".$GLOBALS['FUD_DBHOST_TBL_PREFIX']."ses` (ses_id, time_sec, sys_id, user_id) VALUES ('".$ses_id."', ".time().", '".$sys_id."', ".$user_id.")");
 		}
 
 	} catch (Exception $exception) {
@@ -126,7 +126,7 @@ function fudforumLogon($userData, $sso_url) {
  */
 function findUserRecord($dbh,$userData) {
 	//TODO multiple users with the same email?
-	$sql = 'SELECT id FROM '.$GLOBALS['FUD_DBHOST_TBL_PREFIX'].'users WHERE email=? LIMIT 1';
+	$sql = 'SELECT id FROM `'.$GLOBALS['FUD_DBHOST_TBL_PREFIX'].'users` WHERE email=? LIMIT 1';
 	$statement = $dbh->prepare($sql);
 	if ($statement->execute(array($userData['email']))) {
 		$user = $statement->fetch();
@@ -159,7 +159,7 @@ function findUserRecord($dbh,$userData) {
 	// No email confirmation
 	$users_opt |= 131072;
  	
- 	$sql = 'INSERT INTO '.$GLOBALS['FUD_DBHOST_TBL_PREFIX'].'users SET '
+ 	$sql = 'INSERT INTO `'.$GLOBALS['FUD_DBHOST_TBL_PREFIX'].'users` SET '
  			. ' login = '.$dbh->quote($userData['username'])
  			. ', email = '.$dbh->quote($userData['email'])
  			. ', alias = '.$dbh->quote($userData['username'])
@@ -189,7 +189,7 @@ function findUserRecord($dbh,$userData) {
  * @param array $userData The user's data from TYPO3
  */
  function updateUser($dbh,$userId,$userData) {
- 	$sql = 'UPDATE '.$GLOBALS['FUD_DBHOST_TBL_PREFIX'].'users SET '
+ 	$sql = 'UPDATE `'.$GLOBALS['FUD_DBHOST_TBL_PREFIX'].'users` SET '
  			. ' login = '.$dbh->quote($userData['username'])
  			. ', email = '.$dbh->quote($userData['email'])
  			. ', alias = '.$dbh->quote($userData['username'])
