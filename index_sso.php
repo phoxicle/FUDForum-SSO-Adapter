@@ -239,18 +239,4 @@ function loadFudforumConf() {
 	$GLOBALS['MAX_LOGIN_SHOW'] = $MAX_LOGIN_SHOW;
 }
 
-/**
- * Hashes a password in case it is not yet hashed
- */
-//function hashPassword($password) {
-//    if (substr($password, 0, 3) == '$P$') {
-//	return $password;
-//    } else {
-//	$salt = chr(rand(48, 122)).chr(rand(48, 122)).chr(rand(48, 122)).chr(rand(48, 122));
-//
-//	// mark salt as md5 salt
-//	$salt = '$1$'.$salt.'$';
-//	return crypt($password, $salt);
-//    }
-//}
 ?>
